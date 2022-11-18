@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
-FROM node:12-alpine
+FROM nginx:1.10.01
 RUN apk add --no-cache python2 g++ make
 WORKDIR /app
-COPY . .
+COPY src/html/user/share/nginx/html
 RUN yarn install --production
-CMD ["node", "src/index.js"]
+CMD ["nginx","-g","daemon off;"]
 EXPOSE 3000
